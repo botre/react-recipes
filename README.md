@@ -1,7 +1,5 @@
 # React recipes
 
-## Parcel 1 + TypeScript
-
 ```bash
 mkdir src
 mkdir static
@@ -34,7 +32,7 @@ npm install --save react react-dom
 ```
 
 ```bash
-npm install --save-dev @types/react @types/react-dom bundlesize http-server-spa parcel-bundler parcel-plugin-static-files-copy typescript
+npm install --save-dev @types/react @types/react-dom typescript
 ```
 
 /static/robots.txt
@@ -42,30 +40,6 @@ npm install --save-dev @types/react @types/react-dom bundlesize http-server-spa 
 ```text
 User-agent: *
 Disallow: /
-```
-
-build.sh
-
-```bash
-#!/bin/bash
-
-set -e
-
-BUILD_DIRECTORY="dist"
-
-rm -rf $BUILD_DIRECTORY
-NODE_ENV="production" node_modules/.bin/parcel build src/index.html --detailed-report
-node_modules/.bin/bundlesize
-```
-
-dev.sh
-
-```bash
-#!/bin/bash
-
-set -e
-
-NODE_ENV="development" node_modules/.bin/parcel src/index.html --no-autoinstall
 ```
 
 serve.sh
@@ -92,21 +66,53 @@ package.json
 
 ```json
 {
-  "version": "1.0.0",
-  "scripts": {
-    "build": "sh scripts/build.sh",
-    "dev": "sh scripts/dev.sh",
-    "serve": "sh scripts/serve.sh",
-    "typecheck": "sh scripts/typecheck.sh"
-  },
   "bundlesize": [
     {
-      "path": "./dist/main.*.js",
+      "path": "./dist/index.*.js",
       "maxSize": "300kB"
     }
   ],
   "browserslist": ["defaults"]
 }
+```
+
+## Parcel 2
+
+```bash
+npm install --save-dev bundlesize http-server-spa parcel@next parcel-reporter-static-files-copy
+```
+
+.parcelrc
+
+```json
+{
+  "extends": ["@parcel/config-default"],
+  "reporters": ["parcel-reporter-static-files-copy"]
+}
+```
+
+build.sh
+
+```bash
+#!/bin/bash
+
+set -e
+
+BUILD_DIRECTORY="dist"
+
+rm -rf $BUILD_DIRECTORY
+NODE_ENV="production" node_modules/.bin/parcel build src/index.html --detailed-report
+node_modules/.bin/bundlesize
+```
+
+dev.sh
+
+```bash
+#!/bin/bash
+
+set -e
+
+NODE_ENV="development" node_modules/.bin/parcel serve src/index.html --no-autoinstall
 ```
 
 src/index.html
@@ -120,12 +126,12 @@ src/index.html
   </head>
   <body>
     <div id="root"></div>
-    <script src="main.tsx"></script>
+    <script type="module" src="index.tsx"></script>
   </body>
 </html>
 ```
 
-src/main.tsx
+src/index.tsx
 
 ```tsx
 import React from "react";
