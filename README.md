@@ -32,7 +32,7 @@ npm install --save react react-dom
 ```
 
 ```bash
-npm install --save-dev @types/react @types/react-dom typescript
+npm install --save-dev http-server-spa @types/react @types/react-dom typescript
 ```
 
 /static/robots.txt
@@ -79,7 +79,7 @@ package.json
 ## Parcel 2
 
 ```bash
-npm install --save-dev bundlesize http-server-spa parcel@next
+npm install --save-dev bundlesize parcel@next
 ```
 
 .parcelrc
