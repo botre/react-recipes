@@ -68,7 +68,7 @@ package.json
 {
   "bundlesize": [
     {
-      "path": "./dist/index.*.js",
+      "path": "./dist/main.*.js",
       "maxSize": "300kB"
     }
   ],
@@ -79,15 +79,14 @@ package.json
 ## Parcel 2
 
 ```bash
-npm install --save-dev bundlesize http-server-spa parcel@next parcel-reporter-static-files-copy
+npm install --save-dev bundlesize http-server-spa parcel@next
 ```
 
 .parcelrc
 
 ```json
 {
-  "extends": ["@parcel/config-default"],
-  "reporters": ["parcel-reporter-static-files-copy"]
+  "extends": ["@parcel/config-default"]
 }
 ```
 
@@ -126,12 +125,12 @@ src/index.html
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="index.tsx"></script>
+    <script type="module" src="main.tsx"></script>
   </body>
 </html>
 ```
 
-src/index.tsx
+src/main.tsx
 
 ```tsx
 import React from "react";
