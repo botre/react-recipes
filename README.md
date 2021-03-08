@@ -143,7 +143,7 @@ ReactDOM.render(
 );
 ```
 
-## PostCSS + Tailwind (Parcel)
+## Tailwind (PostCSS)
 
 ```bash
 npm install @tailwindcss/aspect-ratio @tailwindcss/forms @tailwindcss/typography tailwindcss
