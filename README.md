@@ -28,7 +28,7 @@ tsconfig.json
 ```
 
 ```bash
-npm install --save react react-dom
+npm install react react-dom
 ```
 
 ```bash
@@ -141,4 +141,65 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
+```
+
+## Apollo
+
+```bash
+npm install @apollo/client graphql
+```
+
+```tsx
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client/react";
+
+const httpLink = createHttpLink({
+  uri: `${process.env.APP_BACKEND_URI}/graphql`,
+});
+
+const apolloClient = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
+
+const Component = () => <ApolloProvider client={apolloClient}></ApolloProvider>;
+```
+
+## GraphQL codegen (React Apollo)
+
+```bash
+npm install --save-dev @graphql-codegen/cli @graphql-codegen/typescript @graphql-codegen/typescript-operations @graphql-codegen/typescript-react-apollo @graphql-codegen/typescript-resolvers
+```
+
+codegen.sh
+
+```bash
+#!/bin/bash
+
+set -e
+
+NODE_ENV="production" node_modules/.bin/graphql-codegen
+```
+
+codegen.yml
+
+```yml
+schema: ../backend/schema.graphql
+overwrite: true
+generates:
+  .codegen/gql.codegen.tsx:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-resolvers
+      - typescript-react-apollo
+    documents:
+      - src/**/*.{ts,tsx}
+    config:
+      withHooks: true
+      withComponent: false
+      withHOC: false
+      maybeValue: T | undefined
+      namingConvention:
+        enumValues: keep
 ```
