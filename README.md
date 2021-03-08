@@ -79,7 +79,7 @@ package.json
 ## Parcel 2
 
 ```bash
-npm install --save-dev bundlesize parcel@next
+npm install --save-dev bundlesize parcel@nightly
 ```
 
 .parcelrc
@@ -145,10 +145,12 @@ ReactDOM.render(
 
 ## PostCSS + Tailwind (Parcel)
 
-Note: Parcel comes with PostCSS out of the box, PostCSS comes with autoprefixer out of the box.
+```bash
+npm install @tailwindcss/aspect-ratio @tailwindcss/forms @tailwindcss/typography tailwindcss
+```
 
 ```bash
-npm install @tailwindcss/ui tailwindcss
+npm install --save-dev postcss autoprefixer
 ```
 
 postcss.config.js
@@ -167,12 +169,26 @@ module.exports = {
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
-    require("@tailwindcss/ui"),
   ],
   purge: {
     content: ["./src/**/*.tsx"],
   },
 };
+```
+
+src/index.css
+
+```css
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+
+@tailwind utilities;
+```
+
+```tsx
+import "./index.css";
 ```
 
 ## Apollo
