@@ -143,6 +143,38 @@ ReactDOM.render(
 );
 ```
 
+## PostCSS + Tailwind (Parcel)
+
+Note: Parcel comes with PostCSS out of the box, PostCSS comes with autoprefixer out of the box.
+
+```bash
+npm install @tailwindcss/ui tailwindcss
+```
+
+postcss.config.js
+
+```js
+module.exports = {
+  plugins: [require("tailwindcss"), require("autoprefixer")],
+};
+```
+
+tailwind.config.js
+
+```js
+module.exports = {
+  plugins: [
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/ui"),
+  ],
+  purge: {
+    content: ["./src/**/*.tsx"],
+  },
+};
+```
+
 ## Apollo
 
 ```bash
