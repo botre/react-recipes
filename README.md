@@ -87,7 +87,7 @@ npm install --save-dev parcel@nightly parcel-reporter-static-files-copy
 ```json
 {
   "extends": ["@parcel/config-default"],
-  "reporters":  ["parcel-reporter-static-files-copy"]
+  "reporters": ["parcel-reporter-static-files-copy"]
 }
 ```
 
@@ -144,7 +144,7 @@ ReactDOM.render(
 );
 ```
 
-## Tailwind (PostCSS)
+## Tailwind 2 (PostCSS)
 
 ```bash
 npm install @tailwindcss/aspect-ratio @tailwindcss/forms @tailwindcss/typography tailwindcss
@@ -192,7 +192,45 @@ src/index.css
 import "./index.css";
 ```
 
-## Apollo
+## React Router 5
+
+```bash
+npm install query-string react-router-dom use-query-params
+```
+
+```bash
+npm install --save-dev @types/react-router-dom
+```
+
+```tsx
+import React, { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { QueryParamProvider } from "use-query-params";
+
+const HomeScreen = lazy(() => import("./screens/HomeScreen"));
+const EditScreen = lazy(() => import("./screens/EditScreen"));
+
+const Routes = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Router>
+      <QueryParamProvider ReactRouterRoute={Route}>
+        <Switch>
+          <Route key="/" path={"/"} exact>
+            <HomeScreen />
+          </Route>
+          <Route key="/edit/:id" path={"/edit/:id"}>
+            <EditScreen />
+          </Route>
+        </Switch>
+      </QueryParamProvider>
+    </Router>
+  </Suspense>
+);
+
+export default Routes;
+```
+
+## Apollo 3
 
 ```bash
 npm install @apollo/client graphql
