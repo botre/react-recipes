@@ -35,6 +35,19 @@ npm install react react-dom
 npm install --save-dev http-server-spa @types/react @types/react-dom typescript
 ```
 
+/src/main.tsx
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+ReactDOM.render(
+  <React.StrictMode>
+    <div>Hello, World!</div>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+```
+
 /static/robots.txt
 
 ```text
@@ -115,7 +128,7 @@ set -e
 NODE_ENV="development" node_modules/.bin/parcel serve src/index.html --no-autoinstall
 ```
 
-src/index.html
+/src/index.html
 
 ```html
 <!DOCTYPE html>
@@ -129,19 +142,6 @@ src/index.html
     <script type="module" src="main.tsx"></script>
   </body>
 </html>
-```
-
-src/main.tsx
-
-```tsx
-import React from "react";
-import ReactDOM from "react-dom";
-ReactDOM.render(
-  <React.StrictMode>
-    <div>Hello, World!</div>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
 ```
 
 ## Tailwind 2 (PostCSS)
@@ -177,7 +177,7 @@ module.exports = {
 };
 ```
 
-src/index.css
+/src/index.css
 
 ```css
 /* purgecss start ignore */
