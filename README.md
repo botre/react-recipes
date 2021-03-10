@@ -78,15 +78,16 @@ package.json
 
 ## Parcel 2
 
-```bash
-npm install --save-dev bundlesize parcel@nightly
+```bashdev bundlesize
+npm install --save-dev parcel@nightly parcel-reporter-static-files-copy
 ```
 
 .parcelrc
 
 ```json
 {
-  "extends": ["@parcel/config-default"]
+  "extends": ["@parcel/config-default"],
+  "reporters":  ["parcel-reporter-static-files-copy"]
 }
 ```
 
