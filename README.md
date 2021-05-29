@@ -150,6 +150,10 @@ NODE_ENV="development" node_modules/.bin/parcel serve src/index.html --no-autoin
 npm install @tailwindcss/aspect-ratio @tailwindcss/forms @tailwindcss/typography tailwindcss
 ```
 
+```
+npm install --save-dev @types/tailwindcss
+```
+
 ```bash
 npm install --save-dev postcss autoprefixer
 ```
