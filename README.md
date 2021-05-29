@@ -180,11 +180,8 @@ module.exports = {
 /src/index.css
 
 ```css
-/* purgecss start ignore */
 @tailwind base;
 @tailwind components;
-/* purgecss end ignore */
-
 @tailwind utilities;
 ```
 
