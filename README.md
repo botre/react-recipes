@@ -146,6 +146,12 @@ node_modules/.bin/parcel serve src/index.html --no-autoinstall
 </html>
 ```
 
+.gitignore
+
+```bash
+.parcel-cache
+```
+
 ## Tailwind 2 (PostCSS)
 
 ```bash
