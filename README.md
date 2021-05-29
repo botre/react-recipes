@@ -114,7 +114,8 @@ set -e
 BUILD_DIRECTORY="dist"
 
 rm -rf $BUILD_DIRECTORY
-NODE_ENV="production" node_modules/.bin/parcel build src/index.html --detailed-report
+export NODE_ENV="production"
+node_modules/.bin/parcel build src/index.html --detailed-report
 node_modules/.bin/bundlesize
 ```
 
@@ -125,7 +126,8 @@ dev.sh
 
 set -e
 
-NODE_ENV="development" node_modules/.bin/parcel serve src/index.html --no-autoinstall
+export NODE_ENV="development"
+node_modules/.bin/parcel serve src/index.html --no-autoinstall
 ```
 
 /src/index.html
@@ -266,7 +268,8 @@ codegen.sh
 
 set -e
 
-NODE_ENV="production" node_modules/.bin/graphql-codegen
+export NODE_ENV="production"
+node_modules/.bin/graphql-codegen
 ```
 
 codegen.yml
